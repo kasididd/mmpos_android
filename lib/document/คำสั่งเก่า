@@ -1,0 +1,97 @@
+StreamBuilder<dynamic> streamData(provider) {
+    return StreamBuilder(
+      stream: duration(),
+      builder: (context, snapshot) => FutureBuilder(
+          future: selectAll(provider),
+          builder: (context, snapshot) => snapshot.hasData
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SizedBox(
+                  child: getItem.length > 0 && selectByCate().length >= 0
+                      ? GridView.builder(
+                          itemCount: selectByCate().length + 1,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 5, childAspectRatio: 0.85),
+                          itemBuilder: (context, index) => selectByCate()
+                                          .length ==
+                                      index ||
+                                  selectByCate().length == 0
+                              ? InkWell(
+                                  onTap: () async {
+                                    provider.addCate(getCate);
+                                    await showBarModalBottomSheet(
+                                      expand: true,
+                                      context: context,
+                                      backgroundColor: Colors.transparent,
+                                      builder: (context) => ProductScreen(),
+                                    );
+                                  },
+                                  child: Card(
+                                    color: Colors.white,
+                                    child: Icon(
+                                      Icons.add,
+                                      size: 40,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                )
+                              : GestureDetector(
+                                  onTap: () async {
+                                    print('object');
+                                    await Slip.insertU(
+                                        name_item: selectByCate()[index]
+                                            ['name'],
+                                        sum: selectByCate()[index]['price']);
+
+                                    await sumCheck(index);
+                                  },
+                                  child: Card(
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                          flex: 4,
+                                          child: Container(
+                                            color: double.tryParse(
+                                                        selectByCate()[index]
+                                                            ['image'][0]) ==
+                                                    null
+                                                ? Colors.red
+                                                : readColor(
+                                                    selectByCate()[index]
+                                                        ['image']),
+                                            width: double.infinity,
+                                            height: 130,
+                                            child: double.tryParse(
+                                                        selectByCate()[index]
+                                                            ['image'][0]) ==
+                                                    null
+                                                ? Image.network(
+                                                    selectByCate()[index]
+                                                        ['image'],
+                                                    fit: BoxFit.cover,
+                                                  )
+                                                : Text(''),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 1,
+                                          child: Column(
+                                            children: [
+                                              Text(selectByCate()[index]
+                                                  ['name']),
+                                              Text(selectByCate()[index]
+                                                  ['price']),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                        )
+                      : Center(child: Text('')),
+                )),
+    );
+  }

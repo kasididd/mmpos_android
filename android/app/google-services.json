@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "682799999700",
+    "project_id": "mmpos-760be",
+    "storage_bucket": "mmpos-760be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682799999700:android:e3d341355525d79e272941",
+        "android_client_info": {
+          "package_name": "com.example.mmpos_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682799999700-c6sqcm3a8t7a982d6bcg653rvogt3k4j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM6gxP59T8r5eo0DWnk3aXYO8rFBBnhZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682799999700-c6sqcm3a8t7a982d6bcg653rvogt3k4j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

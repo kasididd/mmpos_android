@@ -1,0 +1,35 @@
+onLongPress: () => showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text("คุณต้องการลบสินค้าหรือไม่?"),
+                                      actions: [
+                                        OutlinedButton(
+                                            onPressed: () async {
+                                              await DataBase.delete_id(
+                                                  u_id: selectByCate()[index]
+                                                          ['u_id']
+                                                      .toString());
+
+                                              // print(selectByCate()[index]
+                                              //         ['u_id']
+                                              //     .toString());
+                                              await selectAll(provider);
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              'ยืนยันการลบ',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            )),
+                                        OutlinedButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              'ยกเลิก',
+                                              style: TextStyle(
+                                                  color: Colors.green),
+                                            )),
+                                      ],
+                                    ),
+                                  ),
